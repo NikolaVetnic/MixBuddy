@@ -9,7 +9,7 @@
       >
         <span class="icon-bar" *ngFor="let iconBar of [1, 2, 3]"></span>
       </button>
-      <a routerLink="/" class="navbar-brand">Recipe Book</a>
+      <a routerLink="/" class="navbar-brand"><strong>MixBuddy®</strong></a>
     </div>
 
     <div
@@ -20,7 +20,10 @@
       <!-- hamburger menu END -->
       <ul class="nav navbar-nav">
         <li routerLinkActive="active">
-          <a routerLink="/recipes">Recipes</a>
+          <a routerLink="/auth" *ngIf="!isAuthenticated">Login</a>
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="/recipes" *ngIf="isAuthenticated">Recipes</a>
         </li>
         <li routerLinkActive="active">
           <a routerLink="/shopping-list">Shopping List</a>
@@ -28,7 +31,15 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown" appDropdown>
+        <li>
+          <a
+            style="cursor: pointer"
+            *ngIf="isAuthenticated"
+            (click)="onLogout()"
+            >Logout</a
+          >
+        </li>
+        <li class="dropdown" appDropdown *ngIf="isAuthenticated">
           <a style="cursor: pointer" class="dropdown-toggle" role="button">
             Manage
             <span class="caret"></span>
