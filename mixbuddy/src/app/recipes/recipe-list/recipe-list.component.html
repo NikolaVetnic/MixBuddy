@@ -3,11 +3,23 @@
     <button class="btn btn-success" (click)="onNewRecipe()">New Recipe</button>
   </div>
 </div>
+
 <hr />
+
+<form [formGroup]="searchForm">
+  <label for="search">Search Recipes</label>
+  <input id="search" formControlName="search" style="width: 100%" />
+</form>
+
+<hr />
+
 <div class="row" style="padding-bottom: 24px">
   <div class="col-xs-12">
     <app-recipe-item
-      *ngFor="let recipeElement of recipes; let i = index"
+      *ngFor="
+        let recipeElement of recipes | searchFilter: searchForm.value.search;
+        let i = index
+      "
       [recipe]="recipeElement"
       [index]="i"
     >

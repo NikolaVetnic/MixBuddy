@@ -9,22 +9,22 @@ import { Recipe } from './recipe.model';
 export class RecipeService {
   recipesChanged = new Subject<Recipe[]>();
 
-  //   private recipes: Recipe[] = [
-  //     new Recipe(
-  //       'A Test Recipe',
-  //       'This is simply a test.',
-  //       'https://cdn.diffords.com/contrib/stock-images/2020/03/5e6276c0d9942.jpg',
-  //       [new Ingredient('Vodka', 1), new Ingredient('Cherries', 5)]
-  //     ),
-  //     new Recipe(
-  //       'Another Test Recipe',
-  //       'This is simply another test.',
-  //       'https://bakeitwithlove.com/wp-content/uploads/2021/10/Blue-Hawaiian-Cocktail-sq-500x500.jpg',
-  //       [new Ingredient('Schnaps', 1), new Ingredient('Apples', 3)]
-  //     ),
-  //   ];
+  private recipes: Recipe[] = [
+    new Recipe(
+      'A Test Recipe',
+      'This is simply a test.',
+      'https://cdn.diffords.com/contrib/stock-images/2020/03/5e6276c0d9942.jpg',
+      [new Ingredient('Vodka', 1), new Ingredient('Cherries', 5)]
+    ),
+    new Recipe(
+      'Another Test Recipe',
+      'This is simply another test.',
+      'https://bakeitwithlove.com/wp-content/uploads/2021/10/Blue-Hawaiian-Cocktail-sq-500x500.jpg',
+      [new Ingredient('Schnaps', 1), new Ingredient('Apples', 3)]
+    ),
+  ];
 
-  private recipes: Recipe[] = [];
+  //   private recipes: Recipe[] = [];
 
   constructor(private slService: ShoppingListService) {}
 

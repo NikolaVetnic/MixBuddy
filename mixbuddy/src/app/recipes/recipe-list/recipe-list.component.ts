@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Recipe } from '../recipe.model';
@@ -12,12 +13,16 @@ import { RecipeService } from '../recipe.service';
 export class RecipeListComponent implements OnInit, OnDestroy {
   recipes: Recipe[];
   subscription: Subscription;
+  searchForm;
 
   constructor(
     private recipeService: RecipeService,
     private router: Router,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder
+  ) {
+    this.searchForm = this.formBuilder.group({ search: '' });
+  }
 
   ngOnInit(): void {
     this.subscription = this.recipeService.recipesChanged.subscribe(
