@@ -15,7 +15,9 @@
 </div>
 
 <div class="row">
+  <!-- dropdown menu and recipe name -->
   <div class="col-xs-1" style="padding-top: 16px">
+    <!-- dropdown, uses custom appDropdown directive -->
     <div class="btn-group" appDropdown>
       <button class="btn"><i class="fa fa-bars"></i></button>
       <ul class="dropdown-menu">
@@ -35,6 +37,8 @@
       </ul>
     </div>
   </div>
+
+  <!-- recipe name -->
   <div class="col-xs-10" style="padding-left: 30px">
     <h1>{{ recipe.name }}</h1>
   </div>
@@ -42,18 +46,21 @@
 
 <hr />
 
+<!-- description -->
 <div class="row">
   <div class="col-xs-12">
     {{ recipe.description }}
   </div>
 </div>
 
+<!-- ingredients title -->
 <div class="row">
   <div class="col-xs-12">
     <h3>Ingredients</h3>
   </div>
 </div>
 
+<!-- ingredients -->
 <div class="row">
   <div class="col-xs-12">
     <ul class="list-group">

@@ -10,7 +10,10 @@ import { ShoppingListService } from '../shoppint-list.service';
   styleUrls: ['./shopping-edit.component.css'],
 })
 export class ShoppingEditComponent implements OnInit, OnDestroy {
+  // get access to form via its local reference
   @ViewChild('f') slForm: NgForm;
+
+  // storing the subscription for subsequent clean-up to prevent memory leaks
   subscription: Subscription;
   editMode = false;
   editedItemIndex: number;
@@ -19,11 +22,17 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   constructor(private slService: ShoppingListService) {}
 
   ngOnInit(): void {
+    // sets the subscription value
     this.subscription = this.slService.startedEditing.subscribe(
       (index: number) => {
+        // if we have the index we are in edit mode
         this.editMode = true;
         this.editedItemIndex = index;
+
+        // set the item currently edited to the item at the index
         this.editedItem = this.slService.getIngredient(index);
+
+        // set the form to the item currently edited
         this.slForm.setValue({
           name: this.editedItem.name,
           amount: this.editedItem.amount,
@@ -57,6 +66,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    // cleans up the subscription
     this.subscription.unsubscribe();
   }
 }

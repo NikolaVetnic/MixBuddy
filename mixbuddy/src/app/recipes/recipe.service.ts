@@ -5,8 +5,9 @@ import { ShoppingListService } from '../shopping-list/shoppint-list.service';
 
 import { Recipe } from './recipe.model';
 
-@Injectable()
+@Injectable() // necessary in order to inject service into service
 export class RecipeService {
+  // use the Subject class to emit a new value whenever the recipes change
   recipesChanged = new Subject<Recipe[]>();
 
   //   private recipes: Recipe[] = [
@@ -30,6 +31,8 @@ export class RecipeService {
 
   setRecipes(recipes: Recipe[]) {
     this.recipes = recipes;
+
+    // informs subscribers that the recipes have changed
     this.recipesChanged.next(this.recipes.slice());
   }
 
@@ -43,6 +46,7 @@ export class RecipeService {
   }
 
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
+    // pass ingredients from recipe to shopping list service
     this.slService.addIngredients(ingredients);
   }
 

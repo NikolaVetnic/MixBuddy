@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-    <!-- hamburger menu START -->
+    <!-- Bootstrap Hamburger Menu START -->
     <div class="navbar-header">
       <button
         type="button"
@@ -17,20 +17,28 @@
       [class.collapse]="collapsed"
       (window:resize)="collapsed = true"
     >
-      <!-- hamburger menu END -->
+      <!-- Bootstrap Hamburger Menu END -->
+
       <ul class="nav navbar-nav">
+        <!-- display login link if not authenticated -->
+        <!-- routerLinkActive - displays the active route -->
         <li routerLinkActive="active">
           <a routerLink="/auth" *ngIf="!isAuthenticated">Login</a>
         </li>
+
+        <!-- display recipes link if authenticated -->
         <li routerLinkActive="active">
           <a routerLink="/recipes" *ngIf="isAuthenticated">Recipes</a>
         </li>
+
+        <!-- display shopping list link in any case -->
         <li routerLinkActive="active">
           <a routerLink="/shopping-list">Shopping List</a>
         </li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
+        <!-- display logout link if logged in -->
         <li>
           <a
             style="cursor: pointer"
@@ -39,6 +47,8 @@
             >Logout</a
           >
         </li>
+
+        <!-- display data operations dropdown only if authneticated, uses custom directive appDropdown -->
         <li class="dropdown" appDropdown *ngIf="isAuthenticated">
           <a style="cursor: pointer" class="dropdown-toggle" role="button">
             Manage

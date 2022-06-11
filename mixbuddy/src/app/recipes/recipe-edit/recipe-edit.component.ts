@@ -20,6 +20,7 @@ export class RecipeEditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // dynamically retrieve the id from the route
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
       // if it has id we are in edit mode
@@ -52,16 +53,19 @@ export class RecipeEditComponent implements OnInit {
     (<FormArray>this.recipeForm.get('ingredients')).removeAt(index);
   }
 
+  // on cancel redirect to the recipe details page
   onCancel() {
     this.router.navigate(['../'], { relativeTo: this.route });
   }
 
   private initForm() {
+    // default values for the form
     let recipeName = '';
     let recipeImagePath = '';
     let recipeDescription = '';
     let recipeIngredients = new FormArray([]);
 
+    // if in edit mode, get the recipe from the service and set the form values
     if (this.editMode) {
       const recipe = this.recipeService.getRecipe(this.id);
 
@@ -83,6 +87,7 @@ export class RecipeEditComponent implements OnInit {
       }
     }
 
+    // building the recipe form, registering the controls
     this.recipeForm = new FormGroup({
       name: new FormControl(recipeName, Validators.required),
       imagePath: new FormControl(recipeImagePath, Validators.required),

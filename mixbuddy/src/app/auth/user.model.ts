@@ -6,6 +6,7 @@ export class User {
     private _tokenExpirationDate: Date
   ) {}
 
+  // automatically checks validity and returns token only if valid
   get token() {
     if (!this._tokenExpirationDate || new Date() > this._tokenExpirationDate)
       return null;

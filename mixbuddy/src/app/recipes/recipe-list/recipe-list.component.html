@@ -15,6 +15,7 @@
 
 <div class="row" style="padding-bottom: 24px">
   <div class="col-xs-12">
+    <!-- iterates over recipes that meet the search form value and assigns indices -->
     <app-recipe-item
       *ngFor="
         let recipeElement of recipes | searchFilter: searchForm.value.search;

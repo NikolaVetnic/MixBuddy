@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { AuthGuard } from './auth/auth-guard';
 import { AuthComponent } from './auth/auth.component';
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
@@ -31,11 +32,13 @@ const appRoutes: Routes = [
       {
         path: ':id',
         component: RecipeDetailComponent,
+        // makes sure the data is fetched first
         resolve: [RecipesResolverService],
       },
       {
         path: ':id/edit',
         component: RecipeEditComponent,
+        // makes sure the data is fetched first
         resolve: [RecipesResolverService],
       },
     ],
@@ -51,6 +54,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
+  // transforms TS class into Angular module
   imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule],
 })

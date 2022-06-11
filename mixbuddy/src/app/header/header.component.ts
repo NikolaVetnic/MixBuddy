@@ -9,8 +9,10 @@ import { DataStorageService } from '../shared/data-storage.service';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  // hamburger menu default
+  // hamburger menu default state
   collapsed = true;
+
+  // whether user is logged in or not is read from userSub observable
   isAuthenticated = false;
   private userSub: Subscription;
 

@@ -28,11 +28,13 @@ export class AuthComponent {
 
     let authObs: Observable<AuthResponseData>;
 
+    // set isLoading to true to show spinner while waiting for response
     this.isLoading = true;
 
     if (this.isLoginMode) authObs = this.authService.login(email, password);
     else authObs = this.authService.signup(email, password);
 
+    // subscribe to get response data and potential error message
     authObs.subscribe(
       (resData) => {
         console.log(resData);

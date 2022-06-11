@@ -7,8 +7,8 @@ import { Recipe } from '../../recipe.model';
   styleUrls: ['./recipe-item.component.css'],
 })
 export class RecipeItemComponent implements OnInit {
-  @Input() recipe: Recipe;
-  @Input() index: number;
+  @Input() recipe: Recipe; // recived from outside, that is from recipe-list.component.html
+  @Input() index: number; // same as above
 
   ngOnInit(): void {}
 }

@@ -19,6 +19,11 @@ export class RecipeDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    /*
+     * Subscribe to the params observable of the ActivatedRoute, and t-
+     * hen take the id from the URL and store it in the id variable. F-
+     * inally, fetch the recipe with said id.
+     */
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
       this.recipe = this.recipeService.getRecipe(this.id);
@@ -26,6 +31,7 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onAddToShoppingList() {
+    // pass ingredients from recipe to recipe service
     this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients);
   }
 

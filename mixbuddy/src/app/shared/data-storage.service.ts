@@ -30,13 +30,11 @@ export class DataStorageService {
   }
 
   fetchRecipes() {
-    // take 1 value from observable and unsubscribe
-    // exhaustMap waits for the first observable (user) to complete
-    // entire observable chain then switches to the HTTP observable
     return this.authService.user.pipe(
-      take(1),
+      take(1), // take 1 value from observable and unsubscribe
 
       exhaustMap((user) => {
+        // exhaustMap waits for the first observable (user) to complete
         return this.httpClient.get<Recipe[]>(
           'https://mixbuddy-cdb00-default-rtdb.firebaseio.com/recipes.json',
           {
@@ -45,16 +43,19 @@ export class DataStorageService {
         );
       }),
 
+      // entire observable chain then switches to the HTTP observable
       map((recipes) => {
         // first map - rxjs operator, second map - JS array method
         return recipes.map((recipe) => {
           return {
             ...recipe,
+            // add ingredients array to recipe in case there is none
             ingredients: recipe.ingredients ? recipe.ingredients : [],
           };
         });
       }),
 
+      // executes some code in place without altering the data funneled through the observable
       tap((recipes) => {
         this.recipeService.setRecipes(recipes);
       })
