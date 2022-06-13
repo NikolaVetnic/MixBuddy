@@ -1,6 +1,6 @@
 # MixBuddy
 
-A frontend Angular app developed as the final project of Advanced Web Programming course at Faculty of Sciences in Novi Sad.
+A frontend Angular app for keeping tabs on cocktail recipes.
 
 MixBuddy app is intended for input and storage of cocktail recipes, as well as creating shopping lists based on the selected recipe. Functionalities include:
 
